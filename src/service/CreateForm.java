@@ -1,10 +1,9 @@
 package service;
 
 import java.io.*;
-import java.util.Scanner;
 
-public class Form {
-    public File createForm() {
+public class CreateForm {
+    public static File create() {
         File file = new File("C:\\Users\\Fernando\\Documents\\desafioCadastro\\src\\data\\formulario.txt");
         File directory = new File("C:\\Users\\Fernando\\Documents\\desafioCadastro\\src\\data");
 
@@ -20,21 +19,6 @@ public class Form {
             throw new RuntimeException(e);
         }
         return file;
-    }
-
-    public File showForm() {
-        try (FileReader fileReader = new FileReader("C:\\Users\\Fernando\\Documents\\desafioCadastro\\src\\data\\formulario.txt");
-             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-            String line;
-            while ((line=bufferedReader.readLine())!= null){
-                System.out.println(line);
-
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
     }
 
 }
