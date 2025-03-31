@@ -1,12 +1,16 @@
 package menu;
 
+
+
+import pet.RegisterPet;
+
 import java.util.Scanner;
 
 public class ShowMenu {
-
-    public String show(){
-        Scanner input = new Scanner(System.in);
-        AnswerMenu menu = new AnswerMenu();
+    Scanner input = new Scanner(System.in);
+    AnswerMenu menu = new AnswerMenu();
+    RegisterPet registerPet = new RegisterPet();
+    public void show(){
         System.out.println("----------------------------------------------------");
         System.out.println("1 - Qual o nome e sobrenome do pet?\n" +
                 "2 - Qual o tipo do pet (Cachorro/Gato)?\n" +
@@ -16,10 +20,25 @@ public class ShowMenu {
                 "6 - Qual o peso aproximado do pet?\n" +
                 "7 - Qual a raça do pet?");
         System.out.println("----------------------------------------------------");
+        aswer();
+    }
+
+    public void aswer(){
+        System.out.println("RESPOSTA");
         menu.aswer(input.nextInt());
-        if (menu.asw<=0) {
-            return show();
+        System.out.println("----------------------------------------------------");
+        if (menu.asw<=0 || menu.asw > 7) {
+            show();
         }
-        return null;
+        switch (menu.asw){
+            case 1:
+                System.out.println("1 - Qual o nome e sobrenome do pet?");
+                registerPet.registerName();
+                System.out.println("2 - Qual o tipo do pet (Cachorro/Gato)?");
+                registerPet.registerType();
+
+                break;
+
+        }
     }
 }

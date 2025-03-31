@@ -12,7 +12,6 @@ public class ShowForm {
             String line;
             while ((line=bufferedReader.readLine())!= null){
                 System.out.println(line);
-
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
