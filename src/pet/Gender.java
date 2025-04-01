@@ -1,6 +1,17 @@
 package pet;
 
 public enum Gender {
-    MASCULINO,
-    FEMININO
+    MACHO("MACHO"),
+    FEMEA("FEMEA");
+
+    private String gender;
+
+    Gender(String gender) {
+        this.gender = gender;
+
+    }
+
+    public String getGender() {
+        return gender;
+    }
 }

@@ -1,11 +1,10 @@
 package pet;
 
-public enum AnimalType {
-    GATO("GATO"),
-    CACHORRO("CACHORRO");
+public enum NaoInformado {
+    NAOINFORMADO("NAO INFORMADO");
     private String tipo;
 
-    AnimalType(String tipo) {
+    NaoInformado(String tipo) {
         this.tipo = tipo;
     }
 
