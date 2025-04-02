@@ -10,34 +10,18 @@ public class RegisterPet {
     Pet pet = new Pet();
     Scanner input = new Scanner(System.in);
 
-    private NaoInformado isInformedName;
-    private NaoInformado isInformedAge;
-    private NaoInformado isInformedNumberAdress;
-    private NaoInformado isInformedWeight;
-    private NaoInformado isInformedBreed;
-    private AnimalType animal;
-    private Gender gender;
-    private String completeName;
-    private String breed;
-    private String numberAndress;
-    private String cityAdress;
-    private String streetAndress;
-    private double weight;
-    private int age;
-
-
     public void registerName() {
         System.out.println("NOME: ");
         pet.setName(input.nextLine());
         System.out.println("SOBRENOME: ");
         pet.setSurname(input.nextLine());
         if (pet.getName().equals("") && pet.getSurname().equals("")) {
-            setIsInformedName(isInformedName.NAOINFORMADO);
+            pet.setIsInformedName(pet.isInformedName.NAOINFORMADO);
         } else if (pet.getName().equals("") || pet.getSurname().equals("")) {
             throw new RuntimeException("ERROR: O ANIMAL DEVE TER NOME E SOBRONOME");
         }
-        setCompleteName(pet.getName().concat(pet.getSurname()));
-        System.out.println(getCompleteName().toUpperCase());
+        pet.setCompleteName(pet.getName().concat(pet.getSurname()));
+        System.out.println(pet.getCompleteName().toUpperCase());
     }
 
     public void registerType() {
@@ -49,12 +33,12 @@ public class RegisterPet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (animal.GATO.getTipo().equalsIgnoreCase(userInput)) {
-            setAnimal(AnimalType.GATO);
+        if (pet.animal.GATO.getTipo().equalsIgnoreCase(userInput)) {
+            pet.setAnimal(AnimalType.GATO);
         } else {
-            setAnimal(AnimalType.CACHORRO);
+            pet.setAnimal(AnimalType.CACHORRO);
         }
-        System.out.println(getAnimal());
+        System.out.println(pet.getAnimal());
 
     }
 
@@ -67,25 +51,24 @@ public class RegisterPet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (gender.FEMEA.getGender().equalsIgnoreCase(userInput)) {
-            setGender(gender.FEMEA);
+        if (pet.gender.FEMEA.getGender().equalsIgnoreCase(userInput)) {
+            pet.setGender(pet.gender.FEMEA);
         } else {
-            setGender(gender.MACHO);
+            pet.setGender(pet.gender.MACHO);
         }
-        System.out.println(getGender());
+        System.out.println(pet.getGender());
     }
-
 
     public void registerAdress() {
         System.out.println("i.NUMERO: ");
-        setNumberAndress(input.nextLine());
-        if (getNumberAndress().equals("")) {
-            setIsInformedNumberAdress(isInformedNumberAdress.NAOINFORMADO);
+        pet.setNumberAndress(input.nextLine());
+        if (pet.getNumberAndress().equals("")) {
+            pet.setIsInformedNumberAdress(pet.isInformedNumberAdress.NAOINFORMADO);
         }
         System.out.println("ii.CIDADE: ");
-        setCityAdress(input.nextLine());
+        pet.setCityAdress(input.nextLine());
         System.out.println("iii.RUA: ");
-        setStreetAndress(input.nextLine());
+        pet.setStreetAndress(input.nextLine());
     }
 
     public void registerAge() {
@@ -93,13 +76,13 @@ public class RegisterPet {
         String ageString;
         ageString = input.nextLine();
         if (ageString.equals("")){
-            setAge(0);
+            pet.setAge(0);
         }else {
-        setAge(Integer.valueOf(ageString));}
-        if (getAge() > 20) {
+            pet.setAge(Integer.valueOf(ageString));}
+        if (pet.getAge() > 20) {
             throw new RuntimeException("IDADE INVALIDA");
-        } else if (getAge() == 0) {
-            setIsInformedAge(isInformedAge.NAOINFORMADO);
+        } else if (pet.getAge() == 0) {
+            pet.setIsInformedAge(pet.isInformedAge.NAOINFORMADO);
         }
     }
 
@@ -108,139 +91,22 @@ public class RegisterPet {
         String weightString;
         weightString = input.nextLine();
         if (weightString.equals("")){
-            setAge(0);
+            pet.setWeight(0);
         }else {
-            setAge(Integer.valueOf(weightString));}
-        if (getWeight() > 60 || getWeight() <0.5){
+            pet.setWeight(Integer.valueOf(weightString));}
+        if (pet.getWeight() > 60 || pet.getWeight() <0.5){
             throw new RuntimeException("PESO INVALIDO");
-        } else if (getWeight() == 0) {
-            setIsInformedWeight(isInformedWeight.NAOINFORMADO);
+        } else if (pet.getWeight() == 0) {
+            pet.setIsInformedWeight(pet.isInformedWeight.NAOINFORMADO);
         }
     }
 
     public void registerBreed(){
         System.out.println("RAÇA: ");
-        setBreed(input.nextLine());
-        if (getBreed().equals("")){
-            setIsInformedWeight(isInformedWeight.NAOINFORMADO);
+        pet.setBreed(input.nextLine());
+        if (pet.getBreed().equals("")){
+            pet.setIsInformedWeight(pet.isInformedWeight.NAOINFORMADO);
         }
     }
 
-
-
-    // GETTERS AND SETTERS
-
-
-    public NaoInformado getIsInformedBreed() {
-        return isInformedBreed;
-    }
-
-    public void setIsInformedBreed(NaoInformado isInformedBreed) {
-        this.isInformedBreed = isInformedBreed;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
-
-    public NaoInformado getIsInformedWeight() {
-        return isInformedWeight;
-    }
-
-    public void setIsInformedWeight(NaoInformado isInformedWeight) {
-        this.isInformedWeight = isInformedWeight;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public NaoInformado getIsInformedAge() {
-        return isInformedAge;
-    }
-
-    public void setIsInformedAge(NaoInformado isInformedAge) {
-        this.isInformedAge = isInformedAge;
-    }
-
-    public NaoInformado getIsInformedNumberAdress() {
-        return isInformedNumberAdress;
-    }
-
-    public void setIsInformedNumberAdress(NaoInformado isInformedNumberAdress) {
-        this.isInformedNumberAdress = isInformedNumberAdress;
-    }
-
-    public NaoInformado getIsInformedName() {
-        return isInformedName;
-    }
-
-    public void setIsInformedName(NaoInformado isInformedName) {
-        this.isInformedName = isInformedName;
-    }
-
-    public int getAge() {
-
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public AnimalType getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(AnimalType animal) {
-        this.animal = animal;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public String getNumberAndress() {
-        return numberAndress;
-    }
-
-    public void setNumberAndress(String numberAndress) {
-        this.numberAndress = numberAndress;
-    }
-
-    public String getCityAdress() {
-        return cityAdress;
-    }
-
-    public void setCityAdress(String cityAdress) {
-        this.cityAdress = cityAdress;
-    }
-
-    public String getStreetAndress() {
-        return streetAndress;
-    }
-
-    public void setStreetAndress(String streetAndress) {
-        this.streetAndress = streetAndress;
-    }
-
-    public String getCompleteName() {
-        return completeName;
-    }
-
-    public void setCompleteName(String completeName) {
-        this.completeName = completeName;
-    }
 }
