@@ -4,7 +4,6 @@ public class Pet {
     protected String name;
     protected Gender gender;
     protected String surname;
-    protected AnimalType animalType;
     protected NaoInformado isInformedName;
     protected NaoInformado isInformedAge;
     protected NaoInformado isInformedNumberAdress;
@@ -13,9 +12,9 @@ public class Pet {
     protected AnimalType animal;
     protected String completeName;
     protected String breed;
-    protected String numberAndress;
+    protected String numberAdress;
     protected String cityAdress;
-    protected String streetAndress;
+    protected String streetAdress;
     protected double weight;
     protected int age;
 
@@ -83,12 +82,12 @@ public class Pet {
         this.breed = breed;
     }
 
-    public String getNumberAndress() {
-        return numberAndress;
+    public String getNumberAdress() {
+        return numberAdress;
     }
 
-    public void setNumberAndress(String numberAndress) {
-        this.numberAndress = numberAndress;
+    public void setNumberAdress(String numberAdress) {
+        this.numberAdress = numberAdress;
     }
 
     public String getCityAdress() {
@@ -99,12 +98,12 @@ public class Pet {
         this.cityAdress = cityAdress;
     }
 
-    public String getStreetAndress() {
-        return streetAndress;
+    public String getStreetAdress() {
+        return streetAdress;
     }
 
-    public void setStreetAndress(String streetAndress) {
-        this.streetAndress = streetAndress;
+    public void setStreetAdress(String streetAdress) {
+        this.streetAdress = streetAdress;
     }
 
     public double getWeight() {
@@ -137,14 +136,6 @@ public class Pet {
 
     public void setGender(Gender gender) {
         this.gender = gender;
-    }
-
-    public AnimalType getAnimalType() {
-        return animalType;
-    }
-
-    public void setAnimalType(AnimalType animalType) {
-        this.animalType = animalType;
     }
 
     public void setName(String name) {
