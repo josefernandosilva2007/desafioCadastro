@@ -18,6 +18,28 @@ public class Pet {
     protected double weight;
     protected int age;
 
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "name='" + name + '\'' +
+                ", gender=" + gender +
+                ", surname='" + surname + '\'' +
+                ", isInformedName=" + isInformedName +
+                ", isInformedAge=" + isInformedAge +
+                ", isInformedNumberAdress=" + isInformedNumberAdress +
+                ", isInformedWeight=" + isInformedWeight +
+                ", isInformedBreed=" + isInformedBreed +
+                ", animal=" + animal +
+                ", completeName='" + completeName + '\'' +
+                ", breed='" + breed + '\'' +
+                ", numberAdress='" + numberAdress + '\'' +
+                ", cityAdress='" + cityAdress + '\'' +
+                ", streetAdress='" + streetAdress + '\'' +
+                ", weight=" + weight +
+                ", age=" + age +
+                '}';
+    }
+
     public NaoInformado getIsInformedName() {
         return isInformedName;
     }

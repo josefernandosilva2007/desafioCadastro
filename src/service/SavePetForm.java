@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class SavePetForm {
+
+
     Pet pet = new Pet();
     public File save(Pet pet){
         String formattedName = pet.getName().toUpperCase()+pet.getSurname().toUpperCase();
@@ -17,11 +19,11 @@ public class SavePetForm {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'Hm");
         String dataFormated = now.format(formatter);
-
-        String fileName = dataFormated+"-"+formattedName+".txt";
-
         File directory = new File("C:\\Users\\Fernando\\Documents\\desafioCadastro\\src\\petCadastrados");
         directory.mkdir();
+        String fileName = dataFormated+"-"+formattedName+".txt";
+
+
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Fernando\\Documents\\desafioCadastro\\src\\petCadastrados\\"+fileName))){
             bw.write("1-"+pet.getName()+" "+ pet.getSurname());
