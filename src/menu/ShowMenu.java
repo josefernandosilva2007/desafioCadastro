@@ -17,10 +17,10 @@ public class ShowMenu {
     public void show() {
         System.out.println("=============================================================");
         System.out.println("1 - Cadastrar um novo pet\n" +
-                "2 - Alterar os dados do pet cadastrado\n" +
+                "2 - Listar pets por algum critério (idade, nome, raça)\n" +
                 "3 - Deletar um pet cadastrado\n" +
                 "4 - Listar todos os pets cadastrados\n" +
-                "5 - Listar pets por algum critério (idade, nome, raça)\n" +
+                "5 - Alterar os dados do pet cadastrado\n" +
                 "6 - Sair\n");
         System.out.println("=============================================================");
         aswer();

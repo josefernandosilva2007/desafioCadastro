@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class SearchPet {
     public int choice;
+
     ArrayList<Pet> listPets = listPet();
     List<Pet> filterList = null;
 
@@ -84,41 +85,116 @@ public class SearchPet {
 
     public void printSearchMenu() {
         System.out.println("1-Nome\n" +
-                "2-Tipo\n" +
-                "3-Sexo\n" +
-                "4-Endereço\n" +
-                "5-Idade\n" +
-                "6-Peso\n" +
-                "7-Raça");
+                "2-Sexo\n" +
+                "3-Endereço\n" +
+                "4-Idade\n" +
+                "5-Peso\n" +
+                "6-Raça");
         searchMenu();
     }
 
-
-    public int setFilter() {
-
+public void setContinue(){
+        Scanner input = new Scanner(System.in);
+    System.out.println("-Deseja usar outro criterio?");
+    System.out.println("-[1]SIM ou [2]NAO");
+    int choiceContinue = input.nextInt();
+    if (choiceContinue == 1){
+        setFilter();
+    }
+}
+    public void setFilter() {
         Scanner input = new Scanner(System.in);
         System.out.println("=====RESPOSTA=====");
         System.out.println("-Digite apenas o numero");
         choice = input.nextInt();
-        return choice;
+        answer();
     }
 
     public void answer(){
+        ShowMenu showMenu = new ShowMenu();
         Scanner input = new Scanner(System.in);
+        switch (choice){
+            case 1:
+                System.out.println("-Digite o NOME ou SOBRENOME do animal");
+                String searchPetName = input.nextLine().trim().toUpperCase();
+                if (searchPetName.equals("")){
+                    System.out.println("Nenhum NOME ou SOBRENOME digitado");
+                } else {
+                    filterList = filterName(searchPetName, filterList);
+                }
+                setContinue();
+                break;
+            case 2:
+                System.out.println("-Digite o SEXO do animal");
+                System.out.println("-[1]FEMEA ou [2]MACHO");
+                int typeFilter = input.nextInt();
+                Gender gender = null;
+                if (typeFilter == 1){
+                    gender = gender.FEMEA;
+                } else if (typeFilter == 2) {
+                    gender = gender.MACHO;
+                } else {
+                        System.out.println("Digite Apenas: 1 ou 2");
+                        showMenu.show();
+                    }
+                Gender finalGender = gender;
+                filterList = listPets.stream().filter(pet -> pet.getGender() == finalGender).toList();
+                setContinue();
+                break;
+            case 3:
+                System.out.println("-Digite a CIDADE do animal");
+                String searchCity = input.nextLine().trim().toUpperCase();
+                if (searchCity.equals("")){
+                    System.out.println("Nenhuma CIDADE digitada");
+                } else {
+                    filterList = filterAdress(searchCity, filterList);
+                }
+                setContinue();
+                break;
+            case 4:
+                System.out.println("-Digite a IDADE do animal");
+                int searchAge = input.nextInt();
+                if (searchAge <= 0 || searchAge > 20){
+                    System.out.println("IDADE INVALIDA");
+                } else {
+                    filterList = filterAge(searchAge, filterList);
+                }
+                setContinue();
+                break;
+            case 5:
+                System.out.println("-Digite o PESO do animal");
+                double searchWeight = input.nextDouble();
+                if (searchWeight < 0.5 || searchWeight > 60){
+                    System.out.println("PESO INVALIDO");
+                } else {
+                    filterList = filterWeight(searchWeight, filterList);
+                }
+                setContinue();
+                break;
+            case 6:
+                System.out.println("-Digite a RAÇA do animal");
+                String searchBreed = input.nextLine().trim().toUpperCase();
+                if (searchBreed.equals("")){
+                    System.out.println("Nenhuma RAÇA digitada");
+                } else {
+                    filterList = filterBreed(searchBreed, filterList);
+                }
+                setContinue();
 
+                break;
+
+        }
 
     }
 
 
-
-    public void searchMenu() {
+    public void searchAnimalType(){
         ShowMenu showMenu = new ShowMenu();
         Scanner input = new Scanner(System.in);
         System.out.println("- Qual o tipo do animal?");
         System.out.println("- [1] Cachorro" + "[2] Gato");
         int typeFilter = input.nextInt();
         AnimalType animalType = null;
-
         if (typeFilter == 1) {
             animalType = animalType.CACHORRO;
         } else if (typeFilter == 2) {
@@ -127,23 +203,15 @@ public class SearchPet {
             System.out.println("Digite Apenas: 1 ou 2");
             showMenu.show();
         }
-
         AnimalType finalAnimalType = animalType;
         filterList = listPets.stream().filter(pet -> pet.getAnimal() == finalAnimalType).toList();
-        int filterChoice = setFilter();
-        input.nextLine();
-        switch (filterChoice){
-            case 1:
-                System.out.println("-Digite o NOME ou SOBRENOME do animal");
-                String searchPet = input.nextLine().trim().toUpperCase();
-                if (searchPet.equals("")){
-                    System.out.println("Nenhum NOME ou SOBRENOME digitado");
-                } else {
-                    filterList = filterName(searchPet, filterList);
-                    System.out.println(filterList);
-                }
+    }
 
-        }
+
+    public void searchMenu() {
+        ShowMenu showMenu = new ShowMenu();
+        searchAnimalType();
+        setFilter();
 
         formatListPets(filterList);
 
@@ -157,27 +225,27 @@ public class SearchPet {
                 .filter(pet -> pet.getName().toUpperCase().contains(nameSearch)).toList();
     }
 
-    private List<Pet> filterAge(int idadeBuscada, List<Pet> petArrayList) {
+    private List<Pet> filterAge(int searchAge, List<Pet> petArrayList) {
         return petArrayList.stream()
-                .filter(pet -> pet.getAge() == idadeBuscada)
+                .filter(pet -> pet.getAge() == searchAge)
                 .toList();
     }
 
-    private List<Pet> filterWeight(double pesoBuscado, List<Pet> petArrayList) {
+    private List<Pet> filterWeight(double searchWeight, List<Pet> petArrayList) {
         return petArrayList.stream()
-                .filter(pet -> pet.getWeight() == pesoBuscado)
+                .filter(pet -> pet.getWeight() == searchWeight)
                 .toList();
     }
 
-    private List<Pet> filterBreed(String nomeBuscado, List<Pet> petArrayList) {
+    private List<Pet> filterBreed(String searchBreed, List<Pet> petArrayList) {
         return petArrayList.stream()
-                .filter(pet -> pet.getBreed().contains(nomeBuscado)).toList();
+                .filter(pet -> pet.getBreed().contains(searchBreed)).toList();
     }
 
-    private List<Pet> filterAdress(String enderecoBuscado, List<Pet> petArrayList) {
+    private List<Pet> filterAdress(String searchAdress, List<Pet> petArrayList) {
         return petArrayList.stream()
-                .filter(pet -> String.valueOf(pet.getStreetAdress()).contains(enderecoBuscado) ||
-                        String.valueOf(pet.getCityAdress()).contains(enderecoBuscado))
+                .filter(pet -> String.valueOf(pet.getStreetAdress()).contains(searchAdress) ||
+                        String.valueOf(pet.getCityAdress()).contains(searchAdress))
                 .toList();
     }
 
