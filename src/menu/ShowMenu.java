@@ -1,16 +1,22 @@
 package menu;
 
 import pet.RegisterPet;
+import service.ChangePet;
+import service.DeletePet;
 import service.SavePetForm;
 import service.SearchPet;
+import pet.Pet;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ShowMenu {
     Scanner input = new Scanner(System.in);
+    DeletePet deletePet = new DeletePet();
     SavePetForm savePetForm = new SavePetForm();
     SearchPet searchPet =new SearchPet();
-
+    ChangePet changePet = new ChangePet();
+    List<Pet> pets = searchPet.listPet();
     AnswerMenu answerMenu = new AnswerMenu();
     RegisterPet registerPet = new RegisterPet();
 
@@ -38,6 +44,14 @@ public class ShowMenu {
                 break;
             case 2:
                 searchPet.printSearchMenu();
+                break;
+            case 3:
+                deletePet.delete(pets);
+                break;
+            case 4:
+                searchPet.formatListPets(pets);
+                break;
+            case 5: changePet.editPet(pets);
                 break;
         }
     }
